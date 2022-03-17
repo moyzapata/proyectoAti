@@ -1,5 +1,8 @@
 <html>
 <style>
+body {
+    font-family: sans-serif;
+}
 #a { 
     font-size: xx-small;
     text-align: center;
@@ -11,6 +14,9 @@
 #table-u {
    width: 100%;
 }
+.table-head {
+    border-collapse:collapse;
+}
 td, th {
    width: 25%;
    text-align: left;
@@ -18,7 +24,7 @@ td, th {
    border: 1px solid #000;
    border-spacing: 0;
    font-style: normal;
-   font-family: Verdana;
+   font-family: sans-serif;
 }
 .container {
     max-width: 1000px;
@@ -36,14 +42,14 @@ td, th {
    border: 2px solid #000;
    border-spacing: 0;
    font-style: normal;
-   font-family: Verdana;
+   font-family: sans-serif;
 }
 .td-fisrt {
    text-align: center;
    vertical-align: top;
    border: 0px solid #000;
    font-style: normal;
-   font-family: Verdana;
+   font-family: sans-serif;
 }
 .td-allow {
    text-align: left;
@@ -68,7 +74,22 @@ td, th {
                     Tec: (33) 3002 6144<br/>
                     www.tecnologiaintegrada.com.mx</p></td>
                     <td class="td-fisrt"><img src="logoati.jpg" title="Mi Imagen"></td>
-                    <td class="td-fisrt">Fecha de Solicitud: {{$servicios->fecha}}</td>
+                    <td class="td-fisrt">
+                        <table class="table-head">
+                            <tbody>
+                                <tr>
+                                    <tr>
+                                        <td>Folio</td>
+                                        <td>{{$servicios->id}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fecha de Solicitud:</td>
+                                        <td>{{$servicios->fecha}}</td>
+                                    </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
                 </tr>
             </tbody>
         </table>

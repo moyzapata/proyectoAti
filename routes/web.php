@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Mail\notifyEmail;
+use App\Models\Cliente;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,8 +46,11 @@ Route::get('clientes/{id}/pdfview', [
 Route::get('servicios/{id}/pdfview', [
     'uses' => 'App\Http\Controllers\PDFController@PDFservicios',
     'as'   => 'servicios.pdfview'
-    ]); 
-Route::GET('/PDFclientes', [App\Http\Controllers\PDFController::class, 'PDFclientes'])->name('descargaPDF');
+    ]);
 Route::GET('/PDF', [App\Http\Controllers\PDFController::class, 'PDF'])->name('descargaPDF');
 
-Route::GET('/PDFservicios', [App\Http\Controllers\PDFController::class, 'PDFservicios'])->name('descargaPDF');
+// enviar correo
+Route::GET('/sentEmail', function () {
+    $clientes = Cliente::get()->last();
+    Mail::to('moycruz000@gmail.com')->send(new notifyEmail($clientes));
+});

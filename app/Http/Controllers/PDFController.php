@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use PDF;
 use App\Models\Cliente;
 use App\Models\Servicio;
+use App\Models\User;
+use App\Mail\notifyEmail;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class PDFController extends Controller
 {

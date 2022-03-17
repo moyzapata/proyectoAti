@@ -47,7 +47,7 @@ table, th{
             <button class="btn btn-success btn-sm" type="submit">Search</button>
     </form> -->
     <table class="table table-responsive">
-    <thead class="table-dark" align="left">
+    <thead style="text-align: left;">
         <tr> 
             <th scope="col"><strong>Servicios</strong></th>
         </tr> 
@@ -63,7 +63,7 @@ table, th{
                         <!-- <th scope="col">Dependencia</th>   -->
                         <!-- <th scope="col">Area</th> -->
                         <th scope="col">Domicilio</th>
-                        <th scope="col">Teléfono</th>
+                        <th scope="col">Tel&eacute;fono</th>
                         <th scope="col">Marca</th>
                         <th scope="col">Serie</th>
                         <!-- <th scope="col">Factura</th> -->
@@ -96,12 +96,9 @@ table, th{
                         <td>{{$servicios->evidencias}} </td>
                         <td>{{$servicios->created_at}} </td> -->
                         <td>
-                        <!-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#user-id"><span class="bi bi-ticket-detailed"></button> -->
                         <form action="{{ route ('servicios.destroy', $servicios->id)}}" method="POST">
                         <button type="reset" onclick="location.href='{{ route('servicios.pdfview' , $servicios->id) }}';" class="btn btn-success btn-sm"><span class="bi bi-file-pdf"></button>
                         <button type="reset" class="btn btn-default btn-sm" onclick="location.href='/servicios/{{$servicios->id}}/edit';"><span class="bi bi-pencil" ></button>
-                        <!-- <a href="/PDFservicios" class="btn btn-success btn-sm"><span class="bi bi-file-pdf"></a>
-                        <a href="/servicios/{{$servicios->id}}/edit" class="btn btn-default btn-sm"><span class="bi bi-pencil" > </a> -->
                         @csrf
                         @method('DELETE')
                         <button  type="submit" class="btn btn-danger btn-sm"><span class="bi bi-trash"></button>

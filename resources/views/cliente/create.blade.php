@@ -10,7 +10,6 @@
         <div class="contact-wrapper animated bounceInUp">
             <div class="contact-form">
                 <h3>Reporte Garantia</h3>
-
                 @if(Session::has('Mensaje')){{
                     Session::get('Mensaje')
                 }}
@@ -46,7 +45,7 @@
                         <input id="domicilio" type="text" name="domicilio" class="form-control" tabindex="6">
                     </p>
                     <p>
-                        <label>Numero de télefono</label>
+                        <label>Numero de t&eacute;lefono</label>
                         <input id="telefono" type="telefono" name="telefono" class="form-control" tabindex="7">
                     </p> 
                     
@@ -81,15 +80,15 @@
                         EDIFICIO MIND Av. Faro #2350 Piso 1, interior 1N Col. Verde Valle, Guadalajara, Jal. C.P. 44550
                     <br> <br>
                     Colima <br> <br>
-Alfonso Reyes #314, Col. Jardines Vista Hermosa, Colima, Col. C.P. 28017
+                    Alfonso Reyes #314, Col. Jardines Vista Hermosa, Colima, Col. C.P. 28017
                 </li>
                     <br>
                     <li><i class="fas fa-phone"></i> +52 (312) 323 7443 / +52 (33) 3002 6144</li>
                     <br>
                     <li><i class="fas fa-envelope-open-text"></i> contacto@tecnologiaintegrada.com.mx</li>
                 </ul>
-                <p>No dejes que tu equipo se deteriore por falta de servicio, el área de Soporte Técnico de ATI te apoya a solucionar de forma integral problemas referentes con el funcionamiento de tu Aula Interactiva y sus componentes. Nuestra prioridad es buscar soluciones que 
-                    le permitan ahorrar, mejorar y optimizar los tiempos de operación.</p>
+                <p>No dejes que tu equipo se deteriore por falta de servicio, el &aacute;rea de Soporte T&eacute;cnico de ATI te apoya a solucionar de forma integral problemas referentes con el funcionamiento de tu Aula Interactiva y sus componentes. Nuestra prioridad es buscar soluciones que 
+                    le permitan ahorrar, mejorar y optimizar los tiempos de operaci&oacute;n.</p>
                     <br>
                 <a href="https://tecnologiaintegrada.com.mx/" style="color:blue;">www.tecnologiaintegrada.com.mx</a>
               

@@ -68,6 +68,7 @@ class ClienteController extends Controller
         $clientes->fecha_tramite=$request->get('fecha_tramite');
         $clientes->proveedor=$request->get('proveedor');
         $clientes->ticket_garantia=$request->get('ticket_garantia');
+        $clientes->apli_garantia=$request->get('apli_garantia');
         
         $clientes->fecha_envio_proveedor=$request->get('fecha_envio_proveedor');
         $clientes->fecha_recepcion_garantia=$request->get('fecha_recepcion_garantia');
@@ -135,6 +136,7 @@ class ClienteController extends Controller
         $cliente->fecha_tramite=$request->get('fecha_tramite');
         $cliente->proveedor=$request->get('proveedor');
         $cliente->ticket_garantia=$request->get('ticket_garantia');
+        $cliente->apli_garantia=$request->get('apli_garantia');
         $cliente->fecha_envio_proveedor=$request->get('fecha_envio_proveedor');
         $cliente->fecha_recepcion_garantia=$request->get('fecha_recepcion_garantia');
         $cliente->fecha_envio_cliente=$request->get('fecha_envio_cliente');

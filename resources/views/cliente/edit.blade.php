@@ -88,7 +88,13 @@
                         <option value="">Terminado</option>
                     </select>
                     </p>-->
-
+                    <p>
+                        <label>&iquest;Aplic&oacute; garantia&#63;</label> 
+                        <select class="form-control" name="apli_garantia">
+                        <option value="si">Si</option>
+                        <option value="no">No</option>
+                        </select>
+                    </p>
                     <p>
                        <label>Fecha que envio el proveedor</label> 
                         <input id="fecha_envio_proveedor" type="date" name="fecha_envio_proveedor" class="form-control" tabindex="12" value="{{$cliente->fecha_envio_proveedor}}">
