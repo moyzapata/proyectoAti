@@ -55,8 +55,8 @@ td {
                     Edificio MIND v. Faro #2350 Piso 1,<br/> interior 1N, Col. Verde Valle,<br/> Guadalajara, Jal. C.P. 44550<br/>
                     Tec: (33) 3002 6144<br/>
                     www.tecnologiaintegrada.com.mx</p></td>
+                    <td class="td-fisrt"></td>
                     <td class="td-fisrt"><img src="logoati.jpg" title="Mi Imagen"></td>
-                    <td class="td-fisrt">logo</td>
                 </tr>
             </tbody>
         </table>
