@@ -48,9 +48,3 @@ Route::get('servicios/{id}/pdfview', [
     'as'   => 'servicios.pdfview'
     ]);
 Route::GET('/PDF', [App\Http\Controllers\PDFController::class, 'PDF'])->name('descargaPDF');
-
-// enviar correo
-Route::GET('/sentEmail', function () {
-    $clientes = Cliente::get()->last();
-    Mail::to('moycruz000@gmail.com')->send(new notifyEmail($clientes));
-});

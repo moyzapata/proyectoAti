@@ -68,7 +68,7 @@ td, th {
                                     </tr>
                                     <tr>
                                         <td>Fecha de Solicitud:</td>
-                                        <td>{{$clientes->fecha_registro}}</td>
+                                        <td>{{$clientes->created_at}}</td>
                                     </tr>
                                 </tr>
                             </tbody>

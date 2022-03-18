@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\DB;
+use App\Mail\notifyEmailSer;
+use Illuminate\Support\Facades\Mail;
 
 class ServicioController extends Controller
 {
@@ -64,6 +66,8 @@ class ServicioController extends Controller
         $servicios->evidencias=$request->get('evidencias');
         $servicios->status=$request->get('status');
         $servicios->save();
+
+        Mail::to('moycruz000@gmail.com')->send(new notifyEmailSer($servicios));
 
         return redirect('/servicios/create')->with('Mensaje','Reporte enviado correctamente');
     }

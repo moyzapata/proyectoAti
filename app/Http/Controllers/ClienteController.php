@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cliente;
 use Illuminate\Support\Facades\DB;
+use App\Mail\notifyEmail;
+use Illuminate\Support\Facades\Mail;
 
 class ClienteController extends Controller
 {
@@ -68,7 +70,7 @@ class ClienteController extends Controller
         $clientes->fecha_tramite=$request->get('fecha_tramite');
         $clientes->proveedor=$request->get('proveedor');
         $clientes->ticket_garantia=$request->get('ticket_garantia');
-        $clientes->apli_garantia=$request->get('apli_garantia');
+        $clientes->apli_garantia=$request->get('apli_garantia'); 
         
         $clientes->fecha_envio_proveedor=$request->get('fecha_envio_proveedor');
         $clientes->fecha_recepcion_garantia=$request->get('fecha_recepcion_garantia');
@@ -80,6 +82,8 @@ class ClienteController extends Controller
         $clientes->status=$request->get('status');
 
         $clientes->save();
+
+        Mail::to('moycruz000@gmail.com')->send(new notifyEmail($clientes));
 
         return redirect('/clientes/create')->with('Mensaje','Reporte enviado correctamente');
     }
