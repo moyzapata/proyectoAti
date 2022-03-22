@@ -6,8 +6,8 @@
     <title>Servicio</title>
 </head>
 <body>
-    <p>Hola! Se ha reportado un nuevo caso de garantia a las {{ $servicio->created_at }}.</p>
-    <p>Estos son los datos que el usuario a proporcionado</p>
+    <p>Hola! Se ha reportado un nuevo caso de servicio a las {{ $servicio->created_at }}.</p>
+    <p>Estos son los datos:</p>
     <ul>
         <li>Nombre: {{ $servicio->nombre }}</li>
         <li>Dependencia: {{ $servicio->dependencia }}</li>

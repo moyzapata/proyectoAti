@@ -84,6 +84,7 @@ class ClienteController extends Controller
         $clientes->save();
 
         Mail::to('moycruz000@gmail.com')->send(new notifyEmail($clientes));
+        Mail::to($clientes->correo)->send(new notifyEmail($clientes));
 
         return redirect('/clientes/create')->with('Mensaje','Reporte enviado correctamente');
     }
