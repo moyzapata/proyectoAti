@@ -30,7 +30,7 @@
     margin-top: 15px;
 }
 .search input#search{
-  width: 200px;
+  width: 500px;
   height: 50px;
   background: #4F594C;
   border: none;
@@ -42,25 +42,6 @@
   -moz-border-radius: 100px;
   border-radius: 100px;
 }
-.search:hover button.icon, .search:active button.icon, .search:focus button.icon{
-    outline: none;
-    opacity: 1;
-    margin-left: -50px;
-  }
- 
-  .search:hover button.icon:hover{
-    background: white;
-  }
-  .search:hover .icon{
-  margin-top: 16px;
-  color: #93a2ad;
- 
-  -webkit-transform:scale(1.5); /* Safari and Chrome */
-  -moz-transform:scale(1.5); /* Firefox */
-  -ms-transform:scale(1.5); /* IE 9 */
-  -o-transform:scale(1.5); /* Opera */
-   transform:scale(1.5);
-  }
 .select {
     width: 100px;
     height: 50px;
@@ -94,12 +75,12 @@ option {
   justify-content: center;
 }
 .ibtn {
-  background-color: transparent; /* Blue background */
-  border: none; /* Remove borders */
-  color: #555; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  cursor: pointer; /* Mouse pointer on hover */
+  background-color: transparent;
+  border: none;
+  color: #555;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
 }
 .btn-add {
     width: 40px;
@@ -109,6 +90,18 @@ option {
     font-size: 10pt;
     float: left;
     color: #555;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.btn-search {
+    width: 50px;
+    height: 50px;
+    background: #4F594C;
+    border: none;
+    font-size: 13pt;
+    float: left;
+    color: #fff;
     -webkit-border-radius: 100px;
     -moz-border-radius: 100px;
     border-radius: 100px;
@@ -127,20 +120,29 @@ option {
 i {
     color: #555;
 }
+.full-search{
+    background: #4F594C;
+    height: 50px; 
+    -moz-border-radius: 100px 100px 100px 100px;
+    -webkit-border-radius: 100px 100px 100px 100px;
+    border-radius: 100px 100px 100px 100px;
+}
 </style>
 @section('contenido')
 <div class="bar-first abs-center">
     <form class="search row" action="/clientes/filtrar" method="POST">
         @csrf
-        <select name="opc" id="opc" class="select">
-            <option value="nombre">Nombre</option>
-            <option value="correo">Correo</option>
-            <option value="area">Area</option>
-            <option value="serie">serie</option>
-            <option value="marca">marca</option>
-        </select>
-        <input type="text" id="search" name="valor" placeholder="Search..." />
-        <!-- <button class = "btn btn-success btn-sm" type="submit"><span class="bi bi-search"></button> -->
+        <div class="full-search">
+            <select name="opc" id="opc" class="select">
+                <option value="nombre">Nombre</option>
+                <option value="correo">Correo</option>
+                <option value="area">Area</option>
+                <option value="serie">serie</option>
+                <option value="marca">marca</option>
+            </select>
+            <input type="text" id="search" name="valor" placeholder="Buscar en la base de datos" />
+            <button class = "btn-search" type="submit"><span class="bi bi-search"></button>
+        </div>
     </form>
 </div>
 <div class="container-fluid">
@@ -204,9 +206,8 @@ i {
                 </div>
             </div>
             <div class="col-sm-3 col-md-2 abs-center">
-            @method('PUT')
                 <select class="select-2">
-                    <option selected value="{{$clientes->status}}" onchange="location.href='/clientes/{{$clientes->id}}';">{{$clientes->status}}</option>
+                    <option selected value="{{$clientes->status}}">{{$clientes->status}}</option>
                     <option value="Pendiente">Pendiente</option>
                     <option value="En tramite">En tramite</option>
                     <option value="Terminado">Terminado</option>
