@@ -192,12 +192,12 @@ i {
                 <div class="col">
                     <p><strong>{{$clientes->nombre}} {{$clientes->apellido}}</strong></p>
                     <div class="row">
-                        <div class="col-sm-6 col-md-6 fond-values">
+                        <div class="col-sm-12 col-md-12 fond-values">
                             <i class="bi bi-briefcase-fill">  {{$clientes->area}}</i>
                         </div>
                     </div>
                     <div class="row" style="margin-top: 5px;">
-                        <div class="col-sm-6 col-md-6 fond-values">
+                        <div class="col-sm-12 col-md-12 fond-values">
                             <i class="bi bi-building">  {{$clientes->dependencia}}</i>
                         </div>
                     </div>
