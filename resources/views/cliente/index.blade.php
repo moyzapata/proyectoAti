@@ -54,10 +54,12 @@
     -moz-border-radius: 100px;
     border-radius: 100px;
 }
+.type{
+    color: #fff;
+}
 .select-2 {
     width: 200px;
     height: 35px;
-    background: #538CC8;
     border: none;
     font-size: 10pt;
     float: left;
@@ -117,6 +119,30 @@ option {
     -moz-border-radius: 100px;
     border-radius: 100px;
 }
+.fond-values-lg {
+    height: 60px;
+    background: #CCD0D3;
+    border: none;
+    font-size: 11pt;
+    font-style: italic;
+    float: left;
+    color: #555;
+    -webkit-border-radius: 10PX;
+    -moz-border-radius: 10PX;
+    border-radius: 10PX;
+}
+.fond-values-md {
+    height: 40px;
+    background: #CCD0D3;
+    border: none;
+    font-size: 11pt;
+    font-style: italic;
+    float: left;
+    color: #555;
+    -webkit-border-radius: 10PX;
+    -moz-border-radius: 10PX;
+    border-radius: 10PX;
+}
 i {
     color: #555;
 }
@@ -127,32 +153,56 @@ i {
     -webkit-border-radius: 100px 100px 100px 100px;
     border-radius: 100px 100px 100px 100px;
 }
+.negrita {
+    font-weight: bold;
+    color: #fff;
+    font-style: italic;
+}
+.negrita-2 {
+    font-weight: bold;
+    font-size: 11pt;
+}
+.Pendiente{
+    background: #538CC8;
+}
+.Progreso{
+    background: #FF8A00;
+}
+.Completo{
+    background: #8CC63F;
+}
 </style>
 @section('contenido')
-<div class="bar-first abs-center">
-    <form class="search row" action="/clientes/filtrar" method="POST">
-        @csrf
-        <div class="full-search">
-            <select name="opc" id="opc" class="select">
-                <option value="nombre">Nombre</option>
-                <option value="correo">Correo</option>
-                <option value="area">Area</option>
-                <option value="serie">serie</option>
-                <option value="marca">marca</option>
-            </select>
-            <input type="text" id="search" name="valor" placeholder="Buscar en la base de datos" />
-            <button class = "btn-search" type="submit"><span class="bi bi-search"></button>
-        </div>
-    </form>
+<div class="bar-first abs-center row">
+    <div class="col-sm-3 col-md-2">
+        <h5 class="type">Reportes de garantia</h5>
+    </div>
+    <div class="col-sm-3 col-md-8 abs-center">
+        <form class="search row" action="/clientes/filtrar" method="POST">
+            @csrf
+            <div class="full-search">
+                <select name="opc" id="opc" class="select">
+                    <option value="nombre">Nombre</option>
+                    <option value="correo">Correo</option>
+                    <option value="area">Area</option>
+                    <option value="serie">serie</option>
+                    <option value="marca">marca</option>
+                </select>
+                <input type="text" id="search" name="valor" placeholder="Buscar en la base de datos" />
+                <button class="btn-search" type="submit"><span class="bi bi-search"></button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-3 col-md-8"></div>
 </div>
 <div class="container-fluid">
     <div class="row abs-center" style="margin-bottom: 25px;">
         <div class="col-sm-9 col-md-11">
             <div class="bar abs-center">
-                <div class="col-sm-3 col-md-4">Datos del reporte:</div>
-                <div class="col-sm-3 col-md-4">Contacto de cliente:</div>
-                <div class="col-sm-3 col-md-2">Status</div>
-                <div class="col-sm-3 col-md-2">Operaciones</div>
+                <div class="col-sm-3 col-md-4 negrita">Datos del reporte:</div>
+                <div class="col-sm-3 col-md-4 negrita">Contacto de cliente:</div>
+                <div class="col-sm-3 col-md-2 negrita">Status</div>
+                <div class="col-sm-3 col-md-2 negrita">Operaciones</div>
             </div>
         </div>
         <div class="col-sm-3 col-md-1">
@@ -166,7 +216,7 @@ i {
                 <div class="col">
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
-                            <p><strong>Reporte</strong></p>
+                            <p class="negrita-2">Reporte</p>
                         </div>
                         <div class="col-sm-6 col-md-6 fond-values">
                             <p><small>{{$clientes->id}}</small></p>
@@ -191,30 +241,26 @@ i {
                 </div>
             </div>
             <div class="col-sm-3 col-md-3" style="margin-top: 5px;">
-                <div class="col">
-                    <p><strong>{{$clientes->nombre}} {{$clientes->apellido}}</strong></p>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 fond-values">
-                            <i class="bi bi-briefcase-fill">  {{$clientes->area}}</i>
-                        </div>
+                <p class="negrita-2">{{$clientes->nombre}} {{$clientes->apellido}}</p>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 fond-values">
+                        <i class="bi bi-briefcase-fill">  {{$clientes->area}}</i>
                     </div>
-                    <div class="row" style="margin-top: 5px;">
-                        <div class="col-sm-12 col-md-12 fond-values">
-                            <i class="bi bi-building">  {{$clientes->dependencia}}</i>
-                        </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12 col-md-10 fond-values">
+                        <i class="bi bi-building">  {{$clientes->dependencia}}</i>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3 col-md-2 abs-center">
-                <select class="select-2">
-                    <option selected value="{{$clientes->status}}">{{$clientes->status}}</option>
-                    <option value="Pendiente">Pendiente</option>
-                    <option value="En tramite">En tramite</option>
-                    <option value="Terminado">Terminado</option>
-                </select>
+                <div class="select-2 abs-center {{$clientes->status}}">
+                    {{$clientes->status}}
+                </div>
             </div>
             <div class="col-sm-3 col-md-3 abs-center">
                 <form action="{{ route ('clientes.destroy', $clientes->id)}}" method="POST">
+                    <button type="reset" onclick="toggleHidden('#info-{{$clientes->id}}')" class="ibtn"><span class="bi bi-info-circle"></button>
                     <button type="reset" onclick="location.href='{{ route('clientes.pdfview' , $clientes->id) }}';" class="ibtn"><span class="bi-filetype-pdf"></button>
                     <button type="reset" onclick="location.href='/clientes/{{$clientes->id}}/edit';" class="ibtn"><span class="bi bi-pencil-square" ></button>
                     @csrf
@@ -223,7 +269,47 @@ i {
                 </form>
             </div>
         </div>
+        <div id="info-{{$clientes->id}}" class="datas row" hidden>
+            <div class="col-sm-3 col-md-4" style="margin-top: 5px; margin-bottom: 5px;">
+                <div class="col">
+                    <center>
+                        <i class="bi bi-exclamation-triangle-fill">  Descripci&oacute;n del problema</i>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 fond-values-lg">
+                                {{$clientes->falla}}
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-4" style="margin-top: 5px; margin-bottom: 5px;">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 fond-values">
+                        <i class="bi bi-briefcase-fill">  {{$clientes->correo}}</i>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12 col-md-12 fond-values-md">
+                        <i class="bi bi-geo-alt-fill">  {{$clientes->domicilio}}</i>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12 col-md-5 fond-values">
+                        <i class="bi bi-phone-fill">  {{$clientes->telefono}}</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-2"></div>
+            <div class="col-sm-3 col-md-2"></div>
+        </div>
         @endforeach
+        <script>
+        function toggleHidden(selector) {
+            console.log(selector);
+            element = document.querySelector(selector);
+            element.hidden = element.hidden ? false : true;
+        }
+        </script>
     </div>
 </div>
 

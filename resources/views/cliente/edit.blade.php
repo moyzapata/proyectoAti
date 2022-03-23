@@ -127,7 +127,15 @@
                        <label>Status</label> 
                         <input id="status" type="text" name="status" class="form-control" tabindex="12" value="{{$cliente->status}}">
                     </p>
-
+                    <p>
+                        <label>Status</label> 
+                        <select class="form-control" name="status">
+                            <option selected value="{{$cliente->status}}">{{$cliente->status}}</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Progreso">Progreso</option>
+                            <option value="Completo">Completo</option>
+                        </select>
+                    </p>
                     <p class="block">
                         <a href="/clientes" class="btn btn-secondary" tabindex="13">Cancelar</a> 
                         <button type="submit" class="btn btn-info" tabindex="14">

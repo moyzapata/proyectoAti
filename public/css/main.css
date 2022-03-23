@@ -4,11 +4,10 @@
 
 body {
     background-image: url(../img/imag.png) ;
-opacity: 95;
+    opacity: 95;
     color: #000;
     line-height: 1.6;
     font-family: 'Segoe UI', sans-serif;
-    padding: 0 1.5em;
 }
 
 .container {
@@ -102,15 +101,9 @@ ul {
 
 /* LARGE SIZE */
 @media(min-width: 700px) {
-    body {
-        padding: 0 4em;
-    }
     .contact-wrapper {
         display: grid;
         grid-template-columns: 2fr 1fr;
-    }
-    .contact-wrapper > * {
-        padding: 2em;
     }
     .contact-info h4,
     .contact-info ul,

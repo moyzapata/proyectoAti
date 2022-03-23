@@ -1,118 +1,326 @@
 @extends('layouts.plantilla')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-<link href="{{ asset('css/footer.css') }}" rel="stylesheet">
-
-<link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 <style>
-    table thead {
+.bar {
+    background: #538CC8;
+    width: 100%;
+    height: 40px; 
+    -moz-border-radius: 100px 100px 100px 100px;
+    -webkit-border-radius: 100px 100px 100px 100px;
+    border-radius: 100px 100px 100px 100px;
+}
+.bar-first{
+    background: linear-gradient(to right, #005FB0, #54CA4E);
+    width: 100%;
+    height: 85px;
+    margin-bottom: 25px;
+}
+.datas{
+    border-style:groove;
+    width: 98%; 
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+}
+.search{
+    overflow: hidden;
+    vertical-align: middle;
+    white-space: nowrap;
+    margin-top: 15px;
+}
+.type{
+    color: #fff;
+}
+.search input#search{
+  width: 500px;
+  height: 50px;
+  background: #4F594C;
+  border: none;
+  font-size: 10pt;
+  float: left;
   color: #fff;
-
+  padding-left: 15px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
 }
-/*  */
-table, th{
+.select {
+    width: 100px;
+    height: 50px;
+    background: #8CC63F;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #fff;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.select-2 {
+    width: 200px;
+    height: 35px;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #fff;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+option {
     text-align:center;
-    background:#538CC8;
 }
-
+.abs-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ibtn {
+  background-color: transparent;
+  border: none;
+  color: #555;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn-add {
+    width: 40px;
+    height: 40px;
+    background: #CCD0D3;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #555;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.btn-search {
+    width: 50px;
+    height: 50px;
+    background: #4F594C;
+    border: none;
+    font-size: 13pt;
+    float: left;
+    color: #fff;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.fond-values {
+    height: 20px;
+    background: #CCD0D3;
+    border: none;
+    font-size: 11pt;
+    float: left;
+    color: #000;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    border-radius: 100px;
+}
+.fond-values-lg {
+    height: 60px;
+    background: #CCD0D3;
+    border: none;
+    font-size: 11pt;
+    font-style: italic;
+    float: left;
+    color: #555;
+    -webkit-border-radius: 10PX;
+    -moz-border-radius: 10PX;
+    border-radius: 10PX;
+}
+.fond-values-md {
+    height: 40px;
+    background: #CCD0D3;
+    border: none;
+    font-size: 11pt;
+    font-style: italic;
+    float: left;
+    color: #555;
+    -webkit-border-radius: 10PX;
+    -moz-border-radius: 10PX;
+    border-radius: 10PX;
+}
+i {
+    color: #555;
+}
+.full-search{
+    background: #4F594C;
+    height: 50px; 
+    -moz-border-radius: 100px 100px 100px 100px;
+    -webkit-border-radius: 100px 100px 100px 100px;
+    border-radius: 100px 100px 100px 100px;
+}
+.negrita {
+    font-weight: bold;
+    color: #fff;
+    font-style: italic;
+}
+.negrita-2 {
+    font-weight: bold;
+    font-size: 11pt;
+}
+.Pendiente{
+    background: #538CC8;
+}
+.Progreso{
+    background: #FF8A00;
+}
+.Completo{
+    background: #8CC63F;
+}
 </style>
 
 @section('contenido')
-
-<div class="container-fluid">
-    <form action="/servicios/filtrar" method="POST">
-        @csrf
-        <div class="row">
-            <div class="col">
-                <a href="servicios/create" class="btn btn-primary btn-sm"><span class="bi bi-file-earmark-plus"></a>
-            </div>
-            <div class="col">
-                <select name="opc" id="opc" class="form-control">
+<div class="bar-first abs-center row">
+    <div class="col-sm-3 col-md-2">
+        <h5 class="type">Reportes de servicios</h5>
+    </div>
+    <div class="col-sm-3 col-md-8 abs-center">
+        <form class="search row" action="/servicios/filtrar" method="POST">
+            @csrf
+            <div class="full-search">
+                <select name="opc" id="opc" class="select">
                     <option value="nombre">Nombre</option>
                     <option value="correo">Correo</option>
                     <option value="area">Area</option>
                     <option value="serie">serie</option>
                     <option value="marca">marca</option>
                 </select>
+                <input type="text" id="search" name="valor" placeholder="Buscar en la base de datos" />
+                <button class="btn-search" type="submit"><span class="bi bi-search"></button>
             </div>
-            <div class="col">
-                <input class="form-control" type="text" name="valor" placeholder="Buscar">
-            </div>
-            <div class="col">
-                <button class = "btn btn-success btn-sm" type="submit"><span class="bi bi-search"></button>
-            </div>
-        </div>    
-    </form>
-    <!-- <form class="form-inline my-2 my-lg-0 float-right">
-            <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-success btn-sm" type="submit">Search</button>
-    </form> -->
-    <table class="table table-responsive">
-    <thead style="text-align: left;">
-        <tr> 
-            <th scope="col"><strong>Servicios</strong></th>
-        </tr> 
-    </thead>
-    <tbody>
-        <td>
-            <table class="table table-hover table-bordered" style="margin:5px; padding:5px;" >
-                <thead>
-                    <tr>    
-                        <th scope="col">Nombre</th>
-                        <!-- <th scope="col">Apellidos</th> -->
-                        <th scope="col">Correo</th>
-                        <!-- <th scope="col">Dependencia</th>   -->
-                        <!-- <th scope="col">Area</th> -->
-                        <th scope="col">Domicilio</th>
-                        <th scope="col">Tel&eacute;fono</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Serie</th>
-                        <!-- <th scope="col">Factura</th> -->
-                        <th scope="col">Falla</th>
-                        <th scope="col">Componentes</th>
-                        <!-- <th scope="col">Acciones</th> -->
-                        <!-- <th scope="col">Resultados</th> -->
-                        <!-- <th scope="col">Evidencias</th>  -->
-                        <!-- <th scope="col">Creado</th> -->
-                        <th></th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($servicios as $servicios)
-                    <tr>
-                        <td>{{$servicios->nombre}} </td>
-                        <!-- <td>{{$servicios->apellido}} </td> -->
-                        <td>{{$servicios->correo}} </td>
-                        <!-- <td>{{$servicios->dependencia}} </td> -->
-                        <!-- <td>{{$servicios->area}} </td> -->
-                        <td>{{$servicios->domicilio}} </td>
-                        <td>{{$servicios->telefono}} </td>
-                        <td>{{$servicios->marca}} </td>
-                        <td>{{$servicios->serie}} </td>
-                        <!-- <td>{{$servicios->factura}} </td> -->
-                        <td>{{$servicios->falla}} </td>
-                        <td>{{$servicios->componentes}} </td>
-                        <!-- <td>{{$servicios->acciones}} </td>
-                        <td>{{$servicios->resultado}} </td>
-                        <td>{{$servicios->evidencias}} </td>
-                        <td>{{$servicios->created_at}} </td> -->
-                        <td>
-                        <form action="{{ route ('servicios.destroy', $servicios->id)}}" method="POST">
-                        <button type="reset" onclick="location.href='{{ route('servicios.pdfview' , $servicios->id) }}';" class="btn btn-success btn-sm"><span class="bi bi-file-pdf"></button>
-                        <button type="reset" class="btn btn-default btn-sm" onclick="location.href='/servicios/{{$servicios->id}}/edit';"><span class="bi bi-pencil" ></button>
-                        @csrf
-                        @method('DELETE')
-                        <button  type="submit" class="btn btn-danger btn-sm"><span class="bi bi-trash"></button>
-                        </form>
-                        </td>
-                    </tr>
-                </tbody>
-                    </tr>
-                    @endforeach
-                </tbody>
-                <script src="{{ asset('js/script.js') }}"></script>
-            </table>
-        </td>
-    </tbody>
-    </table>
+        </form>
+    </div>
+    <div class="col-sm-3 col-md-8"></div>
 </div>
+<div class="container-fluid">
+    <div class="row abs-center" style="margin-bottom: 25px;">
+        <div class="col-sm-9 col-md-11">
+            <div class="bar abs-center">
+                <div class="col-sm-3 col-md-4 negrita">Datos del reporte:</div>
+                <div class="col-sm-3 col-md-4 negrita">Contacto de cliente:</div>
+                <div class="col-sm-3 col-md-2 negrita">Status</div>
+                <div class="col-sm-3 col-md-2 negrita">Operaciones</div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-1">
+            <a href="servicios/create" class="btn-add abs-center"><span class="bi bi-plus-circle-fill"></a>
+        </div>
+    </div>
+    <div class="row abs-center">
+        @foreach ($servicios as $servicios)
+        <div class="datas row">
+            <div class="col-sm-3 col-md-4" style="margin-top: 5px;">
+                <div class="col">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            <p class="negrita-2">Reporte</p>
+                        </div>
+                        <div class="col-sm-6 col-md-6 fond-values">
+                            <p><small>{{$servicios->id}}</small></p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-sm-6 col-md-6 fond-values">
+                            <i class="bi bi-calendar3">  {{$servicios->created_at}}</i>
+                        </div>
+                        <div class="col-sm-6 col-md-6 fond-values">
+                            <i class="bi bi-display">  {{$servicios->marca}}</i>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 5px;">
+                        <div class="col-sm-6 col-md-6 fond-values">
+                            <i class="bi bi-clock">  {{$servicios->created_at}}</i>
+                        </div>
+                        <div class="col-sm-6 col-md-6 fond-values">
+                            <i class="bi bi-cpu">  {{$servicios->serie}}</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3" style="margin-top: 5px;">
+                <p class="negrita-2">{{$servicios->nombre}} {{$servicios->apellido}}</p>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 fond-values">
+                        <i class="bi bi-briefcase-fill">  {{$servicios->area}}</i>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12 col-md-10 fond-values">
+                        <i class="bi bi-building">  {{$servicios->dependencia}}</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-2 abs-center">
+                <div class="select-2 abs-center {{$servicios->status}}">
+                    {{$servicios->status}}
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 abs-center">
+                <form action="{{ route ('servicios.destroy', $servicios->id)}}" method="POST">
+                    <button type="reset" onclick="toggleHidden('#info-{{$servicios->id}}')" class="ibtn"><span class="bi bi-info-circle"></button>
+                    <button type="reset" onclick="location.href='{{ route('servicios.pdfview' , $servicios->id) }}';" class="ibtn"><span class="bi-filetype-pdf"></button>
+                    <button type="reset" onclick="location.href='/servicios/{{$servicios->id}}/edit';" class="ibtn"><span class="bi bi-pencil-square" ></button>
+                    @csrf
+                    @method('DELETE')
+                    <button  type="submit" class="ibtn"><span class="bi bi-trash"></button>
+                </form>
+            </div>
+        </div>
+        <div id="info-{{$servicios->id}}" class="datas row" hidden>
+            <div class="col-sm-3 col-md-4" style="margin-top: 5px; margin-bottom: 5px;">
+                <div class="col">
+                    <center>
+                        <i class="bi bi-exclamation-triangle-fill">  Descripci&oacute;n del problema</i>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 fond-values-lg">
+                                {{$servicios->falla}}
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-4" style="margin-top: 5px; margin-bottom: 5px;">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 fond-values">
+                        <i class="bi bi-briefcase-fill">  {{$servicios->correo}}</i>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12 col-md-12 fond-values-md">
+                        <i class="bi bi-geo-alt-fill">  {{$servicios->domicilio}}</i>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12 col-md-5 fond-values">
+                        <i class="bi bi-phone-fill">  {{$servicios->telefono}}</i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-4">
+                <div class="col">
+                    <center>
+                        <i class="bi bi-exclamation-triangle-fill">  Componentes</i>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 fond-values-lg">
+                                {{$servicios->componentes}}
+                            </div>
+                        </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        <script>
+        function toggleHidden(selector) {
+            console.log(selector);
+            element = document.querySelector(selector);
+            element.hidden = element.hidden ? false : true;
+        }
+        </script>
+    </div>
+</div>
+
 @endsection
