@@ -39,7 +39,8 @@ return new class extends Migration
             $table->string('fecha_recibido_cliente',50);
             $table->string('fecha_pruebas',50);
             $table->string('confirmacion',50);
-            $table->string('status',500);          
+            $table->string('status',500);
+            $table->string('user_alter',100);          
           
             $table->timestamps();
         });

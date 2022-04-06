@@ -48,3 +48,5 @@ Route::get('servicios/{id}/pdfview', [
     'as'   => 'servicios.pdfview'
     ]);
 Route::GET('/PDF', [App\Http\Controllers\PDFController::class, 'PDF'])->name('descargaPDF');
+
+Route::resource('admins', 'App\Http\Controllers\HistorialsCntroller');

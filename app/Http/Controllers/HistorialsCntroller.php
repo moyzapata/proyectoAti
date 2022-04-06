@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Historial;
 
 class HistorialsCntroller extends Controller
 {
@@ -13,7 +14,8 @@ class HistorialsCntroller extends Controller
      */
     public function index()
     {
-        //
+        $historials = Historial::all();
+        return view('admin.home')->with('historials', $historials);
     }
 
     /**

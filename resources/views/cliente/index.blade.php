@@ -171,6 +171,44 @@ i {
 .Completo{
     background: #8CC63F;
 }
+.tooltip{
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+.tooltip .tiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 6px 0;
+    position: absolute;
+    z-index: 1;
+    box-shadow : 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.tooltip .tiptext::after{
+    content: "";
+    position: absolute;
+    border-radius: 5px;
+    border-style: solid;
+}
+.tooltip:hover .tiptext{
+    visibility: visible;
+}
+.tooltip.bottom .tiptext{
+    margin-left: -60px;
+    top: 150%;
+    left: 50%;
+}
+.tooltip.bottom .tiptext::after{
+    margin-left: -5px;
+    bottom: 100%;
+    left: 50%;
+    border-color: transparent transparent #2E2E2E transparent;
+}
+
 </style>
 @section('contenido')
 <div class="bar-first abs-center row">
@@ -210,8 +248,8 @@ i {
         </div>
     </div>
     <div class="row abs-center">
-        @foreach ($clientes as $clientes)
-        <div class="datas row">
+        @foreach ($clientes as $cliente)
+        <div id="tablax" class="datas row">
             <div class="col-sm-3 col-md-4" style="margin-top: 5px;">
                 <div class="col">
                     <div class="row">
@@ -219,64 +257,64 @@ i {
                             <p class="negrita-2">Reporte</p>
                         </div>
                         <div class="col-sm-6 col-md-6 fond-values">
-                            <p><small>{{$clientes->id}}</small></p>
+                            <p><small>{{$cliente->id}}</small></p>
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-sm-6 col-md-6 fond-values">
-                            <i class="bi bi-calendar3">  {{$clientes->created_at}}</i>
+                            <i class="bi bi-calendar3">  {{$cliente->created_at}}</i>
                         </div>
                         <div class="col-sm-6 col-md-6 fond-values">
-                            <i class="bi bi-display">  {{$clientes->marca}}</i>
+                            <i class="bi bi-display">  {{$cliente->marca}}</i>
                         </div>
                     </div>
                     <div class="row" style="margin-bottom: 5px;">
                         <div class="col-sm-6 col-md-6 fond-values">
-                            <i class="bi bi-clock">  {{$clientes->created_at}}</i>
+                            <i class="bi bi-clock">  {{$cliente->created_at}}</i>
                         </div>
                         <div class="col-sm-6 col-md-6 fond-values">
-                            <i class="bi bi-cpu">  {{$clientes->serie}}</i>
+                            <i class="bi bi-cpu">  {{$cliente->serie}}</i>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3 col-md-3" style="margin-top: 5px;">
-                <p class="negrita-2">{{$clientes->nombre}} {{$clientes->apellido}}</p>
+                <p class="negrita-2">{{$cliente->nombre}} {{$cliente->apellido}}</p>
                 <div class="row">
                     <div class="col-sm-12 col-md-10 fond-values">
-                        <i class="bi bi-briefcase-fill">  {{$clientes->area}}</i>
+                        <i class="bi bi-briefcase-fill">  {{$cliente->area}}</i>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 5px;">
                     <div class="col-sm-12 col-md-10 fond-values">
-                        <i class="bi bi-building">  {{$clientes->dependencia}}</i>
+                        <i class="bi bi-building">  {{$cliente->dependencia}}</i>
                     </div>
                 </div>
             </div>
             <div class="col-sm-3 col-md-2 abs-center">
-                <div class="select-2 abs-center {{$clientes->status}}">
-                    {{$clientes->status}}
+                <div class="select-2 abs-center {{$cliente->status}}">
+                    {{$cliente->status}}
                 </div>
             </div>
             <div class="col-sm-3 col-md-3 abs-center">
-                <form action="{{ route ('clientes.destroy', $clientes->id)}}" method="POST">
-                    <button type="reset" onclick="toggleHidden('#info-{{$clientes->id}}')" class="ibtn"><span class="bi bi-info-circle"></button>
-                    <button type="reset" onclick="location.href='{{ route('clientes.pdfview' , $clientes->id) }}';" class="ibtn"><span class="bi-filetype-pdf"></button>
-                    <button type="reset" onclick="location.href='/clientes/{{$clientes->id}}/edit';" class="ibtn"><span class="bi bi-pencil-square" ></button>
+                <form action="{{ route ('clientes.destroy', $cliente->id)}}" method="POST">
+                    <button type="reset" onclick="toggleHidden('#info-{{$cliente->id}}')" class="ibtn"><span class="bi bi-info-circle"></button>
+                    <button type="reset" onclick="location.href='{{ route('clientes.pdfview' , $cliente->id) }}';" class="ibtn"><span class="bi-filetype-pdf"></button>
+                    <button type="reset" onclick="location.href='/clientes/{{$cliente->id}}/edit';" class="ibtn"><span class="bi bi-pencil-square" ></button>
                     @csrf
                     @method('DELETE')
                     <button  type="submit" class="ibtn"><span class="bi bi-trash"></button>
                 </form>
             </div>
         </div>
-        <div id="info-{{$clientes->id}}" class="datas row" hidden>
+        <div id="info-{{$cliente->id}}" class="datas row" hidden>
             <div class="col-sm-3 col-md-4" style="margin-top: 5px; margin-bottom: 5px;">
                 <div class="col">
                     <center>
                         <i class="bi bi-exclamation-triangle-fill">  Descripci&oacute;n del problema</i>
                         <div class="row">
                             <div class="col-sm-12 col-md-12 fond-values-lg">
-                                {{$clientes->falla}}
+                                {{$cliente->falla}}
                             </div>
                         </div>
                     </center>
@@ -285,17 +323,17 @@ i {
             <div class="col-sm-3 col-md-4" style="margin-top: 5px; margin-bottom: 5px;">
                 <div class="row">
                     <div class="col-sm-12 col-md-12 fond-values">
-                        <i class="bi bi-briefcase-fill">  {{$clientes->correo}}</i>
+                        <i class="bi bi-briefcase-fill">  {{$cliente->correo}}</i>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 5px;">
                     <div class="col-sm-12 col-md-12 fond-values-md">
-                        <i class="bi bi-geo-alt-fill">  {{$clientes->domicilio}}</i>
+                        <i class="bi bi-geo-alt-fill">  {{$cliente->domicilio}}</i>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 5px;">
                     <div class="col-sm-12 col-md-5 fond-values">
-                        <i class="bi bi-phone-fill">  {{$clientes->telefono}}</i>
+                        <i class="bi bi-phone-fill">  {{$cliente->telefono}}</i>
                     </div>
                 </div>
             </div>
@@ -303,14 +341,15 @@ i {
             <div class="col-sm-3 col-md-2"></div>
         </div>
         @endforeach
-        <script>
-        function toggleHidden(selector) {
-            console.log(selector);
-            element = document.querySelector(selector);
-            element.hidden = element.hidden ? false : true;
-        }
-        </script>
+        {{ $clientes->links() }}
     </div>
 </div>
+<script>
+function toggleHidden(selector) {
+    console.log(selector);
+    element = document.querySelector(selector);
+    element.hidden = element.hidden ? false : true;
+}
+</script>
 
 @endsection

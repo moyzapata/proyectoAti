@@ -29,7 +29,7 @@ class ClienteController extends Controller
     public function index()
     {
         //
-       $clientes = Cliente::all();
+       $clientes = Cliente::orderBy('id', 'DESC')->paginate(3);
         return view('cliente.index')->with('clientes', $clientes);
     }
 
@@ -70,7 +70,7 @@ class ClienteController extends Controller
         $clientes->fecha_tramite=$request->get('fecha_tramite');
         $clientes->proveedor=$request->get('proveedor');
         $clientes->ticket_garantia=$request->get('ticket_garantia');
-        $clientes->apli_garantia=$request->get('apli_garantia'); 
+        $clientes->apli_garantia=$request->get('apli_garantia');
         
         $clientes->fecha_envio_proveedor=$request->get('fecha_envio_proveedor');
         $clientes->fecha_recepcion_garantia=$request->get('fecha_recepcion_garantia');
@@ -79,12 +79,12 @@ class ClienteController extends Controller
         $clientes->fecha_recibido_cliente=$request->get('fecha_recibido_cliente');
         $clientes->fecha_pruebas=$request->get('fecha_pruebas');
         $clientes->confirmacion=$request->get('confirmacion');
-        $clientes->status=$request->get('status');
+        $clientes->status="Pendiente";
 
         $clientes->save();
 
         Mail::to('moycruz000@gmail.com')->send(new notifyEmail($clientes));
-        Mail::to($clientes->correo)->send(new notifyEmail($clientes));
+        //Mail::to($clientes->correo)->send(new notifyEmail($clientes));
 
         return redirect('/clientes/create')->with('Mensaje','Reporte enviado correctamente');
     }
@@ -150,7 +150,7 @@ class ClienteController extends Controller
         $cliente->fecha_pruebas=$request->get('fecha_pruebas');
         $cliente->confirmacion=$request->get('confirmacion');
         $cliente->status=$request->get('status');
-
+        //$clientes->user_alter=user()->name;
 
 
         $cliente->save();

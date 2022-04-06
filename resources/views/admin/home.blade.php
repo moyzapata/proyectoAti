@@ -1,20 +1,60 @@
-<?php
+@extends('layouts.plantilla')
 
-require_once __DIR__ . '././vendor/autoload.php';
+<style>
+    table thead {
+  color: #fff;
 
-$mpdf = new \Mpdf\Mpdf();
-$mpdf->SetHTMLHeader('Tecnologia integrada');
-$mpdf->SetHTMLFooter('Pag. {PAGENO} de {nb}');
+}
+table, th{
+    border-collapse: collapse;
+    background:#538CC8;
+}
+    tbody{
+       border:collapse;
+}
+.abs-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+@section('contenido')
 
-$mpdf->WriteHTML('<h1>reporte de servicio</h1>');
-$mpdf->WriteHTML('<p>reporte de servicio</p>');
-$mpdf->writeHTML('<P>Nombre</p>');
-$mpdf->writeHTML('<P>Domicilio</p>');
-$mpdf->writeHTML('<P>correo</p>');
-$mpdf->writeHTML('<P>telefono</p>');
-$mpdf->writeHTML('<P>Area</p>');
-$mpdf->writeHTML('<P>Dependencia</p>');
-$mpdf->writeHTML('<P>Detalles</p>');
-$mpdf->writeHTML('<P>fecha</p>');
+<div class="container abs-center">
+    
+    <table class="table table-responsive">
+        <thead class="table-dark">
+            <tr> 
+                <th scope="col"><strong>Garantias</strong></th>
+            </tr> 
+        </thead>
+        <tbody>
+            <td>
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Modificacion realizada</th>
+                            <th>Fecha</th>
+                         </tr>
+                    </thead>
+                    <tbody>
+                    @foreach ($historials as $historials)
+                    <tr>
+                        <td>{{$historials->id}} </td>            
+                        <td>{{$historials->user}}</td>
+                        <td>{{$historials->created_at}} </td>
+                    <tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </td>
+        </tbody>
+    </table>
+</div>
 
-$mpdf->Output();
+@endsection
+
+
+
+
